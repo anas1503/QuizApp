@@ -13,10 +13,10 @@ public interface QuestionService {
 
 	
 	Question createQuestion(Question question);
-	Question updateQuestion(Question question,Integer id);
-	void deleteQuestion(Integer id);
+	Question updateQuestion(Question question,long id);
+	void deleteQuestion(long id);
 	List<Question> showAllQuestions();
-	Question getQuestionById(Integer id);
+	Question getQuestionById(long id);
 	
     
 }

@@ -28,7 +28,7 @@ public class QuestionImpl implements QuestionService {
 	}
 
 	@Override
-	public Question updateQuestion(Question question, Integer id) {
+	public Question updateQuestion(Question question, long id) {
 		Optional<Question> ques=questionRepo.findById(id);
 		
 		 
@@ -36,13 +36,13 @@ public class QuestionImpl implements QuestionService {
 	}
 
 	@Override
-	public void deleteQuestion(Integer id) {
+	public void deleteQuestion(long id) {
 		questionRepo.deleteById(id);
 		
 	}
 
 	@Override
-	public Question getQuestionById(Integer id) {
+	public Question getQuestionById(long id) {
 		Question ques=questionRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("question", "questionId", id));
  		 
 		

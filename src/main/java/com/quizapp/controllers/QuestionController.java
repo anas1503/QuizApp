@@ -30,14 +30,14 @@ public class QuestionController {
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public void deleteQuestion(@PathVariable Integer id)
+	public void deleteQuestion(@PathVariable long id)
 	{
 		questionService.deleteQuestion(id);
 	}
 	
 	
 	@GetMapping("/get/{id}")
-	public Question getQuestion(@PathVariable Integer id)
+	public Question getQuestion(@PathVariable long id)
 	{
 		return questionService.getQuestionById(id);
 	}
