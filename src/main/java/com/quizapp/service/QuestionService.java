@@ -1,5 +1,6 @@
 package com.quizapp.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -12,10 +13,10 @@ public interface QuestionService {
 
 	
 	Question createQuestion(Question question);
-	Question updateQuestion(Question question,long id);
-	void deleteQuestion(long id);
-	
-	Question getQuestionById(long id);
+	Question updateQuestion(Question question,Integer id);
+	void deleteQuestion(Integer id);
+	List<Question> showAllQuestions();
+	Question getQuestionById(Integer id);
 	
     
 }

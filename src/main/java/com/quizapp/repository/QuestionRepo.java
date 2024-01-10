@@ -8,6 +8,6 @@ import com.quizapp.models.Question;
 
 
 @Repository
-public interface QuestionRepo extends JpaRepository<Question,Long>{
+public interface QuestionRepo extends JpaRepository<Question,Integer>{
 
 }

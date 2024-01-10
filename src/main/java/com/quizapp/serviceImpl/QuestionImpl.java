@@ -1,5 +1,6 @@
 package com.quizapp.serviceImpl;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ public class QuestionImpl implements QuestionService {
 	}
 
 	@Override
-	public Question updateQuestion(Question question, long id) {
+	public Question updateQuestion(Question question, Integer id) {
 		Optional<Question> ques=questionRepo.findById(id);
 		
 		 
@@ -35,19 +36,27 @@ public class QuestionImpl implements QuestionService {
 	}
 
 	@Override
-	public void deleteQuestion(long id) {
+	public void deleteQuestion(Integer id) {
 		questionRepo.deleteById(id);
 		
 	}
 
 	@Override
-	public Question getQuestionById(long id) {
+	public Question getQuestionById(Integer id) {
 		Question ques=questionRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("question", "questionId", id));
  		 
 		
             
 		 
 		return ques;
+	}
+
+	@Override
+	public List<Question> showAllQuestions() {
+ 
+		List<Question> questions=questionRepo.findAll();
+		
+		return questions;
 	}
 
 	 
