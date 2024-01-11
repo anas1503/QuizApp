@@ -1,9 +1,12 @@
 package com.quizapp.serviceImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.quizapp.repository.QuestionRepo;
@@ -20,19 +23,37 @@ public class QuestionImpl implements QuestionService {
 	 
 
 	@Override
-	public Question createQuestion(Question question) {
+	public ResponseEntity<Question> createQuestion(Question question) {
  		
-		Question ques=questionRepo.save(question);
+		try {
+			Question ques=questionRepo.save(question);
+			
+			return new ResponseEntity<>(ques,HttpStatus.CREATED);
+		}
+	  catch(Exception e)
+		{
+		  e.printStackTrace();
+		}
 		
-		return ques;
+		return new ResponseEntity<>(new Question(),HttpStatus.BAD_REQUEST);
+		
 	}
 
 	@Override
-	public Question updateQuestion(Question question, long id) {
-		Optional<Question> ques=questionRepo.findById(id);
+	public ResponseEntity<Question> updateQuestion(Question question, long id) {
 		
-		 
-		return null;
+		try {
+			Optional<Question> ques=questionRepo.findById(id);
+			 
+			return  new ResponseEntity<>(null,HttpStatus.ACCEPTED);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		return new ResponseEntity<>(null,HttpStatus.BAD_REQUEST);
+		
 	}
 
 	@Override
@@ -42,21 +63,38 @@ public class QuestionImpl implements QuestionService {
 	}
 
 	@Override
-	public Question getQuestionById(long id) {
-		Question ques=questionRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("question", "questionId", id));
- 		 
+	public ResponseEntity<Question> getQuestionById(long id) {
 		
-            
-		 
-		return ques;
+		try {
+			Question ques=questionRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("question", "questionId", id));
+	 		 
+			
+			return new ResponseEntity<>(ques,HttpStatus.ACCEPTED);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		return new ResponseEntity<>(null,HttpStatus.BAD_REQUEST);
+		
 	}
 
 	@Override
-	public List<Question> showAllQuestions() {
+	public ResponseEntity<List<Question>> showAllQuestions() {
  
-		List<Question> questions=questionRepo.findAll();
+		try {
+			List<Question> questions=questionRepo.findAll();
+			
+			return new ResponseEntity<>(questions,HttpStatus.ACCEPTED);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 		
-		return questions;
+		return new ResponseEntity<>(new ArrayList<>(),HttpStatus.BAD_REQUEST);
+		
 	}
 
 	 
